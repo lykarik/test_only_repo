@@ -6,6 +6,7 @@ pipeline {
       steps {
         sh "pwd"
         sh "ls -la"
+        sh "git status"
       }
     }
   }
