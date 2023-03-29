@@ -52,7 +52,7 @@ pipeline {
                   extensions: [
                     [$class: 'PreBuildMerge',
                       mergeTarget: "main",
-                      fastForwardMode: FF,
+                      fastForwardMode: "FF",
                       mergeRemote: "origin"
                      ]
                   ]
