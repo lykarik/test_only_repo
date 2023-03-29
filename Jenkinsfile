@@ -54,6 +54,7 @@ pipeline {
                       mergeRemote: "origin"
                      ]
                   ]
+        )]
         }
       }
     }
