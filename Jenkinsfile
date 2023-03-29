@@ -51,9 +51,11 @@ pipeline {
                   credentialsId: 'jenkins-master-git-key']],
                   extensions: [
                     [$class: 'PreBuildMerge',
+                      options: [[
                       mergeTarget: "main",
                       fastForwardMode: "FF",
                       mergeRemote: "origin"
+                      ]]
                      ]
                   ]
         ])
