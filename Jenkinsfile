@@ -63,6 +63,8 @@ pipeline {
   post {
     success {
       sh """
+        git config --local user.name "jenkins"
+        git config --local user.email "dddsd@erf.com"
         git add .
         git commit -m "commit from Jenkins"
         git push origin service_branch
