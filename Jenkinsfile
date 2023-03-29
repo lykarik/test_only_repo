@@ -29,7 +29,7 @@ pipeline {
     stage ('Move to service branch') {
       steps {
         dir("$WORKSPACE") {
-          sh "git checkout -b service_branch"
+          sh "git checkout service_branch"
         }
       }
     }
