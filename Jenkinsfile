@@ -37,7 +37,9 @@ pipeline {
       steps {  
         dir("$WORKSPACE") {
           sh "touch file_1"
-          sh "echo "asd" >> file_1"
+          sh """
+             echo "asd" >> file_1
+          """
         }
       }
     }
