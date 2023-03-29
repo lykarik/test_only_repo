@@ -60,25 +60,25 @@ pipeline {
 //    }
   }
 
-  post {
-    success {
-      script {
-        withCredentials([credentialsId: 'jenkins-master-git-key']) {
-          sh """
-            git config --local user.name "jenkins"
-            git config --local user.email "dddsd@erf.com"
-            git add .
-            git commit -m "commit from Jenkins"
-            git push origin service_branch
-          """
-        }
+post {
+  success {
+    script {
+      withCredentials([credentialsId: 'jenkins-master-git-key']) {
+        sh """
+          git config --local user.name "jenkins"
+          git config --local user.email "dddsd@erf.com"
+          git add .
+          git commit -m "commit from Jenkins"
+          git push origin service_branch
+        """
+      }
     }
-    failure {
-        echo "1"
-    }
-    aborted {
-      echo "13"
-    }
- }
-
+  }
+  failure {
+      echo "1"
+  }
+  aborted {
+    echo "13"
+  }
+}
 }
