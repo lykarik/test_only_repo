@@ -36,27 +36,44 @@ pipeline {
     stage ('Change repo') {
       steps {  
         dir("$WORKSPACE") {
-          sh "touch file_1"
           sh """
+             touch file_1
              echo "asd" >> file_1
           """
         }
       }
     }
-    stage ('Create merge request') {
-      steps {
-        dir("$WORKSPACE") {
-        checkout([$class: 'GitSCM',
-                  userRemoteConfigs: [[url: "git@github.com:lykarik/test_only_repo.git",
-                  credentialsId: 'jenkins-master-git-key']],
-                  extensions: [
-                    [$class: 'PreBuildMerge',
-                      options: [ mergeTarget: "main", fastForwardMode: "FF", mergeRemote: "origin" ]
-                    ]
-                  ]
-        ])
-        }
-      }
+//    stage ('Create merge request') {
+//      steps {
+//        dir("$WORKSPACE") {
+//        checkout([$class: 'GitSCM',
+//                  userRemoteConfigs: [[url: "git@github.com:lykarik/test_only_repo.git",
+//                  credentialsId: 'jenkins-master-git-key']],
+//                  extensions: [
+//                    [$class: 'PreBuildMerge',
+//                      options: [ mergeTarget: "main", fastForwardMode: "FF", mergeRemote: "origin" ]
+//                    ]
+//                  ]
+//        ])
+//        }
+//      }
     }
   }
+
+  post {
+    success {
+      sh """
+        git add .
+        git commit -m "commit from Jenkins"
+        git push origin service_branch
+      """
+    }
+    failure {
+        echo "1"
+    }
+    aborted {
+      echo "13"
+    }
+ }
+
 }
