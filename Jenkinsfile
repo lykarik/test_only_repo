@@ -62,16 +62,14 @@ pipeline {
 
 post {
   success {
-    script {
-      withCredentials([sshUserPrivateKey(credentialsId: "jenkins-master-git-key", keyFileVariable: 'jenkins-master-git-key')]) {
-        sh """
-          git config --local user.name "jenkins"
-          git config --local user.email "dddsd@erf.com"
-          git add .
-          git commit -m "commit from Jenkins"
-          git push origin service_branch
-        """
-      }
+    sshagent(['jenkins-master-git-key']) {
+      sh """
+        git config --local user.name "jenkins"
+        git config --local user.email "dddsd@erf.com"
+        git add .
+        git commit -m "commit from Jenkins"
+        git push origin service_branch
+      """
     }
   }
   failure {
