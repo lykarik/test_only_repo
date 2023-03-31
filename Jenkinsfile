@@ -63,7 +63,7 @@ pipeline {
 post {
   success {
     script {
-      withCredentials([sshUserPrivateKey(credentialsId: "jenkins-master-git-key", keyFileVariable: 'jenkins-master-git-key']) {
+      withCredentials([sshUserPrivateKey(credentialsId: "jenkins-master-git-key", keyFileVariable: 'jenkins-master-git-key')]) {
         sh """
           git config --local user.name "jenkins"
           git config --local user.email "dddsd@erf.com"
