@@ -1,9 +1,8 @@
 library identifier: 'test_only_repo@jenkins_shared',
-  retriever: modernSCM([
-    $class: 'GitSCMSource',
-    credentialsId: 'jenkins-master-git-key',
-    remote: 'git@github.com:lykarik/test_only_repo.git'
-  ])
+        retriever: modernSCM([
+          $class: 'GitSCMSource',
+          credentialsId: 'jenkins-master-git-key',
+          remote: 'git@github.com:lykarik/test_only_repo.git'])
 
 pipeline {
   agent {label 'master'}
