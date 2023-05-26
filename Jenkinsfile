@@ -50,7 +50,7 @@ pipeline {
         dir("$WORKSPACE") {
           sh """
              touch file_1
-             echo "changes from ${date}" >> file_1
+             echo "changes from" >> file_1
           """
         }
       }
