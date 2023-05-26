@@ -9,7 +9,7 @@ pipeline {
 
   parameters {
     booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
-    string(name: 'ANSIBLE_LIMITS', defaultValue: '<hostname>', description: 'Field for ANSIBLE_LIMITS value')
+    string(name: 'ANSIBLE_LIMITS', defaultValue: 'hostname', description: 'Field for ANSIBLE_LIMITS value')
   }
   stages {
     stage ('Some commands') {
