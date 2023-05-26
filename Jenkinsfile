@@ -7,10 +7,15 @@ library identifier: 'test_only_repo@jenkins_shared',
 pipeline {
   agent {label 'master'}
 
+  parameters {
+    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
+    string(name: 'ANSIBLE_LIMITS', defaultValue: '<hostname>', description: 'Field for ANSIBLE_LIMITS value')
+  }
   stages {
     stage ('Some commands') {
       steps {
         shared_lib()
+        sh "echo ${params.ANSIBLE_LIMITS}"
         sh "pwd"
         sh "ls -la"
         sh "git branch && git status"
