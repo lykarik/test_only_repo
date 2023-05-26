@@ -9,8 +9,9 @@ pipeline {
 
   parameters {
     booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
-    string(name: 'ANSIBLE_LIMITS', defaultValue: 'hostname', description: 'Field for ANSIBLE_LIMITS value')
+    string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
+
   stages {
     stage ('Some commands') {
       steps {
@@ -19,6 +20,15 @@ pipeline {
         sh "pwd"
         sh "ls -la"
         sh "git branch && git status"
+      }
+    }
+    stage ('Stage with ANSIBLE_LIMITS') {
+      steps {
+        script {
+          if (params.CUSTOM_HOSTS) {
+            shared_lib.ansible_fake("${params.ANSIBLE_LIMITS}", "inventories/voshod/ppak")
+          }
+        }
       }
     }
     // stage ('Git checkout main branch') {
