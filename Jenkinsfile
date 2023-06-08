@@ -7,7 +7,7 @@ library identifier: 'test_only_repo@jenkins_shared',
 pipeline {
   agent {label 'master'}
 
-  properties([
+  options([
     parameters([
       [$class: 'CascadeChoiceParameter', 
         choiceType: 'PT_CHECKBOX', 
