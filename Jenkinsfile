@@ -7,23 +7,28 @@ library identifier: 'test_only_repo@jenkins_shared',
 pipeline {
   agent {label 'master'}
 
-  parameters {
-    [$class: 'CascadeChoiceParameter', 
-      choiceType: 'PT_CHECKBOX', 
-      description: 'Select Environment',
-      filterLength: 1,
-      filterable: false,
-      name: 'Environment', 
-      script: [
-        $class: 'GroovyScript', 
+  properties([
+    parameters([
+      [$class: 'CascadeChoiceParameter', 
+        choiceType: 'PT_CHECKBOX', 
+        description: 'Select Environment',
+        filterLength: 1,
+        filterable: false,
+        name: 'Environment', 
         script: [
-          classpath: [], 
-          sandbox: false, 
-          script: 
-            'return[\'Development\',\'QA\',\'Staging\',\'Production\']'
+          $class: 'GroovyScript', 
+          script: [
+            classpath: [], 
+            sandbox: false, 
+            script: 
+              'return[\'Development\',\'QA\',\'Staging\',\'Production\']'
+          ]
         ]
       ]
-    ]
+    ])
+  ])     
+        
+  parameters {
     booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
     string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
