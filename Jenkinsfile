@@ -8,6 +8,16 @@ pipeline {
   agent {label 'master'}
 
   parameters {
+    cascadeChoiceParameter( choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+                            name: 'Environment', description: 'description',
+                            script: [$class: 'GroovyScript',
+                                    script: [
+                                      classpath: [],
+                                      sandbox: false,
+                                      script:
+                                        'return[\'Development\',\'QA\',\'Stage\',\'Prod\']'
+                                    ]
+                            ])
     booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
     string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
