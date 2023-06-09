@@ -69,6 +69,7 @@ pipeline {
           }
         }
       }
+    }
     // stage ('Git checkout main branch') {
     //   steps {
     //     dir("$WORKSPACE") {
