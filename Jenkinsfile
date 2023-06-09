@@ -29,7 +29,8 @@ pipeline {
   ]) */
 
   parameters {
-    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually\nNEWLINE')
+    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'Stands optins:\n
+                                                                          GKHCONTENT - gkhcontent.ru')
     string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
 
