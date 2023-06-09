@@ -62,7 +62,7 @@ pipeline {
           }
           else {
             echo "Environment total: ${params.ANSIBLE_LIMITS}"
-            String[] Env_Array = "${params.ANSIBLE_LIMITS}".split(',');
+            String[] Env_Array = "${params.ANSIBLE_LIMITS}".split(' ');
             for (x in Env_Array) {
               echo "ENV: ${x}"
             }
