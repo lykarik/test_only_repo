@@ -30,7 +30,7 @@ pipeline {
 
   parameters {
     text(name: 'Update/deliver exist letsencrypt certs', defaultValue: '', 
-         description: 'GKHCONTENT\nTEST_GKHCONTENT\nSIT\nSSP\nNT\nKPAK\nFT\nGORSREDA\nVTC\nMOB\n\nMultiply keys example: KPAK NT FT')
+         description: 'Stands keys for string fields:\n\nGKHCONTENT\nTEST_GKHCONTENT\nSIT\nSSP\nNT\nKPAK\nFT\nGORSREDA\nVTC\nMOB\n\nMultiply keys example: KPAK NT FT')
     booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'Stands options')
     string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
