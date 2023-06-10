@@ -29,10 +29,9 @@ pipeline {
   ]) */
 
   parameters {
-    text(name: 'Update/deliver exist letsencrypt certs', defaultValue: 'Stands keys for string fields', 
+    text(name: 'Update/deliver exist letsencrypt certs', defaultValue: '', 
          description: 'Stands keys for string fields:\n\nGKHCONTENT\nTEST_GKHCONTENT\nSIT\nSSP\nNT\nKPAK\nFT\nGORSREDA\nVTC\nMOB\n\nMultiply keys example: KPAK NT FT')
-    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'Stands options:\nGKHCONTENT\nTEST_GKHCONTENT\nSIT\nSSP\nNT\nKPAK\nFT\nGORSREDA\nVTC\nMOB')
-    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'If need insert hosts manually')
+    booleanParam(name: 'CUSTOM_HOSTS', defaultValue: false, description: 'Stands options')
     string(name: 'ANSIBLE_LIMITS', defaultValue: '', description: 'Field for ANSIBLE_LIMITS value')
   }
 
@@ -65,7 +64,7 @@ pipeline {
           }
           else {
             echo "Environment total: ${params.ANSIBLE_LIMITS}"
-            String[] Env_Array = "${params.ANSIBLE_LIMITS}".split(',');
+            String[] Env_Array = "${params.ANSIBLE_LIMITS}".split(' ');
             for (x in Env_Array) {
               echo "ENV: ${x}"
             }
